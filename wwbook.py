@@ -44,15 +44,13 @@ start_date = datetime(1880, 1, 1)
 end_date = datetime(1900, 12, 31)
 
 comparebooks = (alt.Chart(cb)
-    .mark_line()
-    .encode(
-        x=alt.X('year:T', axis=alt.Axis(title='Year of His Journal')),
-        y=alt.Y('verse_short_title', title='Number of Verses Referenced'),
-        color='book_title'
-    )
-    .transform_filter(
-        alt.FieldRangePredicate(field='year', range=[start_date, end_date])
-    )
+                .mark_line()
+                .encode(
+        x=alt.X('year:T', axis=alt.Axis(title='Year of His Journal'), scale=alt.DateTimeScale(domain=(start_date, end_date))),            
+
+    y=alt.Y('verse_short_title',title='Number of Verses Referenced'),
+    color='book_title'
+                )
 )
 
 st.altair_chart(comparebooks,use_container_width=True)
