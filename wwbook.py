@@ -2,11 +2,10 @@ import streamlit as st
 
 import pandas as pd
 import altair as alt
-import plotly.express as px
 import datetime as dt
 
 st.title('WW Papers')
-path = pd.read_csv("/clean_final2.csv")
+path = pd.read_csv("clean_final2.csv")
 booksToShow = st.multiselect(label='Which Books?', options= path['book_title'].unique(),default=['Mosiah','Alma'])
 
 #path2 = path.query('internal_id in options').
