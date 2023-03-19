@@ -50,4 +50,15 @@ comparebooks = (alt.Chart(cb)
 
 st.altair_chart(comparebooks,use_container_width=True)
 
+import plotly.express as px
+# Create chart
+comparebooks = px.line(cb, x='year', y='verse_short_title', color='book_title', 
+                       title='Comparison of Number of Verses Referenced by Book and Year of His Journal',
+                       labels={'year': 'Year of His Journal', 'verse_short_title': 'Number of Verses Referenced'})
+comparebooks.update_layout(xaxis_tickformat = 'd')
+
+# Display chart in Streamlit app
+st.plotly_chart(comparebooks)
+
+
 # streamlit run "C:/Users/spenc/Documents/GitHub/wasianwilford/White Guy/wwbook.py"
