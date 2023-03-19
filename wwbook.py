@@ -2,7 +2,7 @@ import streamlit as st
 
 import pandas as pd
 import altair as alt
-import datetime as dt
+import datetime
 
 st.title('WW Papers')
 path = pd.read_csv("clean_final2.csv")
@@ -39,15 +39,20 @@ cb = (path.query('book_title in @booksToShow')
 
 st.text("Here\'s how these Books Compare Over the Years of Pres. Woodruff\'s Writing:")
         
-comparebooks = (alt.Chart(cb)
-                .mark_line()
-                .encode(
-    x=alt.X('year',axis=alt.Axis(title='Year of His Journal',format='d'), scale=alt.Scale(domain=[1880, 1900])),
-            
 
-    y=alt.Y('verse_short_title',title='Number of Verses Referenced'),
-    color='book_title'
-                )
+start_date = datetime(1880, 1, 1)
+end_date = datetime(1900, 12, 31)
+
+comparebooks = (alt.Chart(cb)
+    .mark_line()
+    .encode(
+        x=alt.X('year:T', axis=alt.Axis(title='Year of His Journal')),
+        y=alt.Y('verse_short_title', title='Number of Verses Referenced'),
+        color='book_title'
+    )
+    .transform_filter(
+        alt.FieldRangePredicate(field='year', range=[start_date, end_date])
+    )
 )
 
 st.altair_chart(comparebooks,use_container_width=True)
