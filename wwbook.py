@@ -39,16 +39,16 @@ cb = (path.query('book_title in @booksToShow')
 
 st.text("Here\'s how these Books Compare Over the Years of Pres. Woodruff\'s Writing:")
         
-comparebooks = (alt.Chart(cb)
-                .mark_line()
-                .encode(
-    x=alt.X('year',axis=alt.Axis(title='Year of His Journal',format='d')),
-    y=alt.Y('verse_short_title',title='Number of Verses Referenced'),
-    color='book_title'
-                )
-)
+# comparebooks = (alt.Chart(cb)
+#                 .mark_line()
+#                 .encode(
+#     x=alt.X('year',axis=alt.Axis(title='Year of His Journal',format='d')),
+#     y=alt.Y('verse_short_title',title='Number of Verses Referenced'),
+#     color='book_title'
+#                 )
+# )
 
-st.altair_chart(comparebooks,use_container_width=True)
+# st.altair_chart(comparebooks,use_container_width=True)
 
 import plotly.express as px
 # Create chart
@@ -58,7 +58,7 @@ comparebooks = px.line(cb, x='year', y='verse_short_title', color='book_title',
 comparebooks.update_layout(xaxis_tickformat = 'd')
 
 # Display chart in Streamlit app
-st.plotly_chart(comparebooks)
+st.plotly_chart(comparebooks,use_container_width=True)
 
 
 # streamlit run "C:/Users/spenc/Documents/GitHub/wasianwilford/White Guy/wwbook.py"
