@@ -6,7 +6,7 @@ import datetime as dt
 
 st.title('WW Papers')
 path = pd.read_csv("clean_final2.csv")
-booksToShow = st.multiselect(label='Which Books?', options= path['book_title'].unique(),default=['Mosiah','Alma'])
+booksToShow = st.multiselect(label='Which Books?', options= path['book_title'].unique(),default=['Doctrine and Covenants','Alma'])
 
 #path2 = path.query('internal_id in options').
 prop_limit = st.slider('How Strict are the Matches?', 0, 100, 35)
